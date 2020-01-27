@@ -17,9 +17,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.zentaoverflow.springboot.app.post.exception.ResourceNotFoundExceptionPost;
 import com.zentaoverflow.springboot.app.post.models.PostModel;
 import com.zentaoverflow.springboot.app.post.repository.PostRepository;
-import com.zentaoverflow.springboot.app.user.exception.ResourceNotFoundException;
+
 
 
 
@@ -40,9 +41,9 @@ public class PostController {
     
     @GetMapping("/post/{id}")
     public ResponseEntity<PostModel> getPostById(@PathVariable(value = "id") Long id_post)
-        throws ResourceNotFoundException {
+        throws ResourceNotFoundExceptionPost {
     	PostModel post = postRepository.findById(id_post)
-          .orElseThrow(() -> new ResourceNotFoundException("Post not found for this id : " + id_post));
+          .orElseThrow(() -> new ResourceNotFoundExceptionPost("Post not found for this id : " + id_post));
         return ResponseEntity.ok().body(post);
     }
     
@@ -53,9 +54,9 @@ public class PostController {
     
     @PutMapping("/post/{id}")
     public ResponseEntity<PostModel> updateUser(@PathVariable(value = "id") Long id_post,
-         @Valid @RequestBody PostModel postDetails) throws ResourceNotFoundException {
+         @Valid @RequestBody PostModel postDetails) throws ResourceNotFoundExceptionPost {
     	PostModel post = postRepository.findById(id_post)
-        .orElseThrow(() -> new ResourceNotFoundException("Post not found for this id : " + id_post));
+        .orElseThrow(() -> new ResourceNotFoundExceptionPost("Post not found for this id : " + id_post));
 
     	post.setPosttitle(postDetails.getPosttitle());
     	post.setPostcontent(postDetails.getPostcontent());
@@ -65,9 +66,9 @@ public class PostController {
     
     @DeleteMapping("/post/{id}")
     public Map<String, Boolean> deletePost(@PathVariable(value = "id") Long id_post)
-         throws ResourceNotFoundException {
+         throws ResourceNotFoundExceptionPost {
     	PostModel post = postRepository.findById(id_post)
-       .orElseThrow(() -> new ResourceNotFoundException("Post not found for this id : " + id_post));
+       .orElseThrow(() -> new ResourceNotFoundExceptionPost("Post not found for this id : " + id_post));
 
     	postRepository.delete(post);
         Map<String, Boolean> response = new HashMap<>();
