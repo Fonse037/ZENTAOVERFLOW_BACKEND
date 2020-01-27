@@ -96,5 +96,10 @@ public class PostModel {
 		this.fk_id_status = fk_id_status;
 	}
 
+	@Override
+    public String toString() {
+        return "PostModel[id=" + id + ", posttitle=" + posttitle + ", postcontent=" + postcontent + ", fk_id_user=" + fk_id_user
+        + ", views=" + views + ", createdat=" + createdat + ", updatedat=" + updatedat + ", fk_id_status=" + fk_id_status + "]";
+    }
 	
 }
