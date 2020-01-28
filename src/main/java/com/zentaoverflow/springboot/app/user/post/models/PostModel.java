@@ -1,4 +1,4 @@
-package com.zentaoverflow.springboot.app.post.models;
+package com.zentaoverflow.springboot.app.user.post.models;
 
 import java.util.Date;
 

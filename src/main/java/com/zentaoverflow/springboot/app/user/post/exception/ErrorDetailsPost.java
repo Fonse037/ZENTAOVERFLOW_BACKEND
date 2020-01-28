@@ -1,4 +1,4 @@
-package com.zentaoverflow.springboot.app.post.exception;
+package com.zentaoverflow.springboot.app.user.post.exception;
 import java.util.Date;
 
 public class ErrorDetailsPost {

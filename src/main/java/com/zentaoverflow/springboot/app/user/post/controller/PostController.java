@@ -1,4 +1,4 @@
-package com.zentaoverflow.springboot.app.post.controller;
+package com.zentaoverflow.springboot.app.user.post.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -17,14 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.zentaoverflow.springboot.app.post.exception.ResourceNotFoundExceptionPost;
-import com.zentaoverflow.springboot.app.post.models.PostModel;
-import com.zentaoverflow.springboot.app.post.repository.PostRepository;
-
-
-
-
-
+import com.zentaoverflow.springboot.app.user.post.exception.ResourceNotFoundExceptionPost;
+import com.zentaoverflow.springboot.app.user.post.models.PostModel;
+import com.zentaoverflow.springboot.app.user.post.repository.PostRepository;
 
 
 @RestController

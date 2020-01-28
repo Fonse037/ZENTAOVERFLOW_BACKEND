@@ -1,4 +1,4 @@
-package com.zentaoverflow.springboot.app.post.exception;
+package com.zentaoverflow.springboot.app.user.post.exception;
 import java.util.Date;
 
 import org.springframework.http.HttpStatus;
@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 
-import com.zentaoverflow.springboot.app.post.exception.ErrorDetailsPost;
-import com.zentaoverflow.springboot.app.post.exception.ResourceNotFoundExceptionPost;
+import com.zentaoverflow.springboot.app.user.post.exception.ErrorDetailsPost;
+import com.zentaoverflow.springboot.app.user.post.exception.ResourceNotFoundExceptionPost;
 
 @ControllerAdvice
 public class GlobalExceptionHandlerPost {
