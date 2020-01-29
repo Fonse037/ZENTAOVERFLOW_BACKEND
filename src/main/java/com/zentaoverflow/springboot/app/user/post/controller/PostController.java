@@ -48,7 +48,7 @@ public class PostController {
     }
     
     @PutMapping("/post/{id}")
-    public ResponseEntity<PostModel> updateUser(@PathVariable(value = "id") Long id_post,
+    public ResponseEntity<PostModel> updatePost(@PathVariable(value = "id") Long id_post,
          @Valid @RequestBody PostModel postDetails) throws ResourceNotFoundExceptionPost {
     	PostModel post = postRepository.findById(id_post)
         .orElseThrow(() -> new ResourceNotFoundExceptionPost("Post not found for this id : " + id_post));
