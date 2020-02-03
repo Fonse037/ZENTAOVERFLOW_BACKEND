@@ -1,14 +1,14 @@
 package com.zentaoverflow.springboot.app.user.controller;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,25 +49,34 @@ public class UserController {
     public ResponseEntity<UserModel> updateUser(@PathVariable(value = "id") Long id_user,
          @Valid @RequestBody UserModel userDetails) throws ResourceNotFoundException {
     	UserModel user = userRepository.findById(id_user)
-        .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + id_user));
+        .orElseThrow(() -> new ResourceNotFoundException("User not found for this id : " + id_user));
 
-        user.setUsermail(userDetails.getUsermail());
         user.setUsername(userDetails.getUsername());
         user.setUsersurname(userDetails.getUsersurname());
         final UserModel updatedUser = userRepository.save(user);
         return ResponseEntity.ok(updatedUser);
     }
 
-    @DeleteMapping("/user/{id}")
-    public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long id)
-         throws ResourceNotFoundException {
-    	UserModel user = userRepository.findById(id)
-       .orElseThrow(() -> new ResourceNotFoundException("User not found for this id :: " + id));
+    @PutMapping("/delete/user/{id}")
+    public ResponseEntity<UserModel> deleteUser(@PathVariable(value = "id") Long id_user,
+            @Valid @RequestBody UserModel userDetails) throws ResourceNotFoundException {
+       	UserModel user = userRepository.findById(id_user)
+           .orElseThrow(() -> new ResourceNotFoundException("User not found for this id : " + id_user));
 
-        userRepository.delete(user);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        user.setFk_id_status(userDetails.getFk_id_status());
+        final UserModel deletedUser = userRepository.save(user);
+        return ResponseEntity.ok(deletedUser);
+    }
+    
+    @PutMapping("/pwd/user/{id}")
+    public ResponseEntity<UserModel> updatePassUser(@PathVariable(value = "id") Long id_user,
+         @Valid @RequestBody UserModel userDetails) throws ResourceNotFoundException {
+    	UserModel user = userRepository.findById(id_user)
+        .orElseThrow(() -> new ResourceNotFoundException("User not found for this id : " + id_user));
+
+        user.setUserpwd(userDetails.getUserpwd());
+        final UserModel updatedPassUser = userRepository.save(user);
+        return ResponseEntity.ok(updatedPassUser);
     }
 
 }
